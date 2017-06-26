@@ -9,16 +9,18 @@ It first makes sure to install all prereqs, then install umbrell at the end.
 
 ------------------------------------
 ## DSC version
-dsc version is as literaly written to use dsc syntax written .ps1 files.
+DSC(Desired State Configuration) version of Umbrella deployment.
+If you are using Windows 2008 R2 server, please ensure to install [Windows Management Framwork 4.0](https://www.microsoft.com/en-US/download/details.aspx?id=40855) or [higher](https://msdn.microsoft.com/en-us/powershell/wmf/readme)
 
-You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deployment/tree/master/DevOps) directory.
-1. Open Powershell ISE as Administrator
-2. Open relevant .ps1 file
-3. Execute it by copy & paste code into console window
+You can get .ps1 file from [dsc](https://github.com/Nobukins/Umbrella-Deployment/tree/master/dsc) directory.
 
 ------------------------------------
 ## Powershell version
 Powershell version is probably more stable as it anyway run it on where you can run powershell.
+You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deployment/tree/master/DevOps) directory.
+1. Open Powershell ISE as Administrator
+2. Open relevant .ps1 file
+3. Execute it by copy & paste code into console window
 
 ------------------------------------
 #### for Windows 2008 R2 (*)
