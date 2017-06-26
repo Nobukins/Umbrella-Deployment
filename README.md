@@ -24,13 +24,14 @@ You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deploym
 
 ------------------------------------
 #### for Windows 2008 R2 (*)
-PowerShell ISE (Integrated Scripting Environment) gets installed by default with Windows 7  or Windows Server 2008 R2 but doesn’t show in the start menu. There are two ways to enable PowerShell ISE.
+>PowerShell ISE (Integrated Scripting Environment) gets installed by default with Windows 7  or Windows Server 2008 R2 but doesn’t show in the start menu. There are two ways to enable PowerShell ISE.
+
 Please refer more detail in this [MSDN article](https://blogs.msdn.microsoft.com/guruketepalli/2012/11/06/enable-powershell-ise-from-windows-server-2008-r2/)
 
-Using PowerShell
+>Using PowerShell
 
-1. Open Powershell Window
-2. Execute following cmdlets.
+>1. Open Powershell Window
+>2. Execute following cmdlets.
 
 ```powershell
 Import-Module ServerManager
