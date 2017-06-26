@@ -20,7 +20,11 @@ Powershell version is probably more stable as it anyway run it on where you can 
 You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deployment/tree/master/DevOps) directory.
 1. Open Powershell ISE as Administrator
 2. Open relevant .ps1 file
-3. Execute it by copy & paste code into console window
+3. Copy & paste code into console window
+4. Execute it by click enter key in console window
+
+
+![Umbrella Deployment previwe](https://github.com/Nobukins/Umbrella-Deployment/tree/master/img/umbrella-deployment.gif "Umbrella Deployment Short Overview")
 
 ------------------------------------
 #### for Windows 2008 R2 (*)
