@@ -24,7 +24,7 @@ You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deploym
 4. Execute it by click enter key in console window
 
 
-![Umbrella Deployment previwe](https://github.com/Nobukins/Umbrella-Deployment/tree/master/img/umbrella-deployment.gif "Umbrella Deployment Short Overview")
+![Umbrella Deployment previwe](https://github.com/Nobukins/Umbrella-Deployment/blob/master/img/umbrella-deployment.gif?raw=true "Umbrella Deployment Short Overview")
 
 ------------------------------------
 #### for Windows 2008 R2 (*)
