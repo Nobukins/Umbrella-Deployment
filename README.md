@@ -31,6 +31,6 @@ Using PowerShell
 1. Open Powershell Window
 2. Execute following cmdlets.
 
-
 ```Import-Module ServerManager```
+
 ```Add-WindowsFeature PowerShell-ISE```
