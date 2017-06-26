@@ -10,7 +10,8 @@ It first makes sure to install all prereqs, then install umbrell at the end.
 ------------------------------------
 ## DSC version
 dsc version is as literaly written to use dsc syntax written .ps1 files.
-[Please get file from here](https://github.com/Nobukins/Umbrella-Deployment/tree/master/DevOps)
+
+You can get .ps1 file from [DevOps](https://github.com/Nobukins/Umbrella-Deployment/tree/master/DevOps) directory.
 1. Open Powershell ISE as Administrator
 2. Open relevant .ps1 file
 3. Execute it by copy & paste code into console window
