@@ -8,7 +8,7 @@
     File Name  : DevOps_Umbrella-Deployment.ps1
 .LINK  
     https://technet.microsoft.com/en-us/sysinternals/autologon.aspx
-	https://gallery.technet.microsoft.com/scriptcenter/a6b10a18-c4e4-46cc-b710-4bd7fa606f95
+    https://gallery.technet.microsoft.com/scriptcenter/a6b10a18-c4e4-46cc-b710-4bd7fa606f95
 .EXAMPLE  
     .\DevOps_Umbrella-Deployment.ps1 -DOTNET462_DLUrl "http://url01/xxx.exe" -vcredist2013_x86_DLUrl "http://url02/xxx.exe" -vcredist2013_x64_DLUrl "http://url03/xxx.exe" -UMBRELLA_DLUrl "http://url03/xxx.msi" -DOTNET462_DLFilePath "C:\DLFile01.exe" -vcredist2013_x86_DLFilePath "C:\DLFile02.exe" -vcredist2013_x64_DLFilePath "C:\DLFile03.exe" -UMBRELLA_DLFilePath "C:\DLFile04.msi" -ROOTURL="" -MANIFEST_BASEURL="" -MANIFEST_VERSION="" -INSTALL_AS_SERVICE=""
 
@@ -61,9 +61,9 @@ param (
     [string]$MANIFEST_VERSION = "public",
     [string]$MANIFEST_BASEURL = "https://dsmstore.directsmile.de/umbrella",
     [string]$INSTALL_AS_SERVICE = "0",
-	
-	[string]$CNNAME = "localhost",
-	[string]$NOCERTS = "true"
+    
+    [string]$CNNAME = "",
+    [string]$NOCERTS = ""
 )
 <# -------------- File Download -------------- #>
 
@@ -117,7 +117,13 @@ Write-Host "Complete installation of C++ 2013 x64"
 Write-Progress -activity "Execute File(s)" -status "70% Complete:" -percentcomplete 70
 <# 7. Install Umbrella over msiexec #>
 Write-Host "Create Special install parameter based on given arguments"
-$UMBRELLA_CUSTOM_PARAMETERS = "ROOTURL=$ROOTURL MANIFEST_VERSION=$MANIFEST_VERSION MANIFEST_BASEURL=$MANIFEST_BASEURL INSTALL_AS_SERVICE=$INSTALL_AS_SERVICE NOCERTS=$NOCERTS CNNAME=$CNNAME"
+if ($CNNAME -eq "") { 
+    Write-Host "Make Umbrella default deployment"
+    $UMBRELLA_CUSTOM_PARAMETERS = "ROOTURL=$ROOTURL MANIFEST_VERSION=$MANIFEST_VERSION MANIFEST_BASEURL=$MANIFEST_BASEURL INSTALL_AS_SERVICE=$INSTALL_AS_SERVICE"
+    } else {
+    Write-Host "Make Umbrella cusomized deployment"
+    $UMBRELLA_CUSTOM_PARAMETERS = "ROOTURL=$ROOTURL MANIFEST_VERSION=$MANIFEST_VERSION MANIFEST_BASEURL=$MANIFEST_BASEURL INSTALL_AS_SERVICE=$INSTALL_AS_SERVICE NOCERTS=$NOCERTS CNNAME=$CNNAME"
+    }
 Write-Host "Start to install Umbrella"
 Start-Process msiexec.exe -Wait -ArgumentList "/I $UMBRELLA_DLFilePath /log c:\dsc_Umbrella_Deployment.log $UMBRELLA_CUSTOM_PARAMETERS /qr"
 Write-Host "Complete installation of Umbrella"
