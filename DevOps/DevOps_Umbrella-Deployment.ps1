@@ -102,17 +102,18 @@ Write-Host "Complete Download"
 
 
 <# -------------- File Execution -------------- #>
+
 Write-Progress -activity "Execute File(s)" -status "50% Complete:" -percentcomplete 50
 <# 5. Use x86 Powershell.exe to run C++ 2013 x86 Installer #>
 Write-Host "Start to install C++ 2013 x86"
-Start-Process -FilePath "$ENV:SystemRoot\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" -ArgumentList "-Command `"& {Start-Process -FilePath $vcredist2013_x86_DLFilePath -ArgumentList '/q /norestart /log C:\temp\log.txt' -Wait -NoNewWindow}`"" -Wait -NoNewWindow
-Write-Host "Complete installation of C++ 2013 x86"
+Start-Process $vcredist2013_x86_DLFilePath -ArgumentList '/q /norestart /log C:\temp\vcredist_x86-Installation.log.txt' -Wait -NoNewWindow
+Write-Host "Completed installation of C++ 2013 x86"
 
 Write-Progress -activity "Execute File(s)" -status "60% Complete:" -percentcomplete 60
 <# 6. Use x86 Powershell.exe to run C++ 2013 x64 Installer #>
 Write-Host "Start to install C++ 2013 x64"
-Start-Process -FilePath "$ENV:SystemRoot\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" -ArgumentList "-Command `"& {Start-Process -FilePath $vcredist2013_x64_DLFilePath -ArgumentList '/q /norestart /log C:\temp\log.txt' -Wait -NoNewWindow}`"" -Wait -NoNewWindow
-Write-Host "Complete installation of C++ 2013 x64"
+Start-Process $vcredist2013_x64_DLFilePath -ArgumentList '/q /norestart /log C:\temp\vcredist_x64-Installation.log.txt' -Wait -NoNewWindow
+Write-Host "Completed installation of C++ 2013 x64"
 
 Write-Progress -activity "Execute File(s)" -status "70% Complete:" -percentcomplete 70
 <# 7. Install Umbrella over msiexec #>
@@ -134,10 +135,10 @@ Write-Host "Start to install .Net462"
 Start-Process -FilePath "$ENV:SystemRoot\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" -ArgumentList "-Command `"& {Start-Process -FilePath $DOTNET462_DLFilePath -ArgumentList '/q /norestart /log C:\temp\log.txt' -Wait -NoNewWindow}`"" -Wait -NoNewWindow
 Write-Host "Complete installation of .Net462"
 
-
 <# -------------- Restart within 1 min -------------- #>
 
 Write-Progress -activity "Reboot server to ensure deployment" -status "90% Complete:" -percentcomplete 90
 <# 9. Restart to confirm Autologin #>
 # Restart Computer
-Shutdown -r
+Start-Process -FilePath "Shutdown.exe" -ArgumentList "-r" -PassThru
+EXIT 0
