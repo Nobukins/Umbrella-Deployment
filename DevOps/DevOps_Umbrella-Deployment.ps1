@@ -52,7 +52,7 @@ param (
     [string]$vcredist2013_x64_DLUrl = "https://download.microsoft.com/download/0/5/6/056DCDA9-D667-4E27-8001-8A0C6971D6B1/vcredist_x64.exe",
     [string]$UMBRELLA_DLUrl = "https://directsmile.blob.core.windows.net/installer/umbrella.msi",
 
-    [string]$DOTNET462_DLFilePath = "C:\NDP47-KB3186497-x86-x64-AllOS-ENU.exe",
+    [string]$DOTNET462_DLFilePath = "C:\NDP462-KB3151800-x86-x64-AllOS-ENU.exe",
     [string]$vcredist2013_x86_DLFilePath = "C:\vcredist_x86.exe",
     [string]$vcredist2013_x64_DLFilePath = "C:\vcredist_x64.exe",
     [string]$UMBRELLA_DLFilePath = "C:\umbrella.msi",
