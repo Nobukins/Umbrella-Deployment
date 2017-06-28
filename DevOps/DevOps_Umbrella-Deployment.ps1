@@ -3,12 +3,13 @@
     Deploy Umbrella together with prereq
 .DESCRIPTION  
     This powershell script does download prereq with umbrella itself, then execute silently.
+    To support further action which would be performed over Umbrella, it configure WinRM
     It automatically reboot machine with 10 seconds timeout range.
 .NOTES  
     File Name  : DevOps_Umbrella-Deployment.ps1
 .LINK  
-    https://technet.microsoft.com/en-us/sysinternals/autologon.aspx
     https://gallery.technet.microsoft.com/scriptcenter/a6b10a18-c4e4-46cc-b710-4bd7fa606f95
+    https://serverfault.com/questions/427730/configure-winrm-using-a-bat-file-without-yes-no-prompt
 .EXAMPLE  
     .\DevOps_Umbrella-Deployment.ps1 -DOTNET462_DLUrl "http://url01/xxx.exe" -vcredist2013_x86_DLUrl "http://url02/xxx.exe" -vcredist2013_x64_DLUrl "http://url03/xxx.exe" -UMBRELLA_DLUrl "http://url03/xxx.msi" -DOTNET462_DLFilePath "C:\DLFile01.exe" -vcredist2013_x86_DLFilePath "C:\DLFile02.exe" -vcredist2013_x64_DLFilePath "C:\DLFile03.exe" -UMBRELLA_DLFilePath "C:\DLFile04.msi" -ROOTURL="" -MANIFEST_BASEURL="" -MANIFEST_VERSION="" -INSTALL_AS_SERVICE=""
 
@@ -106,12 +107,14 @@ Write-Host "Complete Download"
 Write-Progress -activity "Execute File(s)" -status "50% Complete:" -percentcomplete 50
 <# 5. Use x86 Powershell.exe to run C++ 2013 x86 Installer #>
 Write-Host "Start to install C++ 2013 x86"
+Write-Progress -activity "Execute File(s) - C++ 2013 x86" -status "55% Complete:" -percentcomplete 55
 Start-Process $vcredist2013_x86_DLFilePath -ArgumentList '/q /norestart /log C:\temp\vcredist_x86-Installation.log.txt' -Wait -NoNewWindow
 Write-Host "Completed installation of C++ 2013 x86"
 
 Write-Progress -activity "Execute File(s)" -status "60% Complete:" -percentcomplete 60
 <# 6. Use x86 Powershell.exe to run C++ 2013 x64 Installer #>
 Write-Host "Start to install C++ 2013 x64"
+Write-Progress -activity "Execute File(s) - C++ 2013 x64" -status "65% Complete:" -percentcomplete 65
 Start-Process $vcredist2013_x64_DLFilePath -ArgumentList '/q /norestart /log C:\temp\vcredist_x64-Installation.log.txt' -Wait -NoNewWindow
 Write-Host "Completed installation of C++ 2013 x64"
 
@@ -126,19 +129,28 @@ if ($CNNAME -eq "") {
     $UMBRELLA_CUSTOM_PARAMETERS = "ROOTURL=$ROOTURL MANIFEST_VERSION=$MANIFEST_VERSION MANIFEST_BASEURL=$MANIFEST_BASEURL INSTALL_AS_SERVICE=$INSTALL_AS_SERVICE NOCERTS=$NOCERTS CNNAME=$CNNAME"
     }
 Write-Host "Start to install Umbrella"
+Write-Progress -activity "Execute File(s) - Umbrella" -status "75% Complete:" -percentcomplete 75
 Start-Process msiexec.exe -Wait -ArgumentList "/I $UMBRELLA_DLFilePath /log c:\dsc_Umbrella_Deployment.log $UMBRELLA_CUSTOM_PARAMETERS /qr"
 Write-Host "Complete installation of Umbrella"
 
 Write-Progress -activity "Execute File(s)" -status "80% Complete:" -percentcomplete 80
 <# 8. Use x86 Powershell.exe to run .Net4.6.2 Installer #>
 Write-Host "Start to install .Net462"
+Write-Progress -activity "Execute File(s) - .Net4.6.2" -status "85% Complete:" -percentcomplete 85
 Start-Process -FilePath "$ENV:SystemRoot\SysWOW64\WindowsPowerShell\v1.0\powershell.exe" -ArgumentList "-Command `"& {Start-Process -FilePath $DOTNET462_DLFilePath -ArgumentList '/q /norestart /log C:\temp\log.txt' -Wait -NoNewWindow}`"" -Wait -NoNewWindow
 Write-Host "Complete installation of .Net462"
 
+<# 9. Enable WinRm #>
+Write-Progress -activity "Configure WinRM" -status "90% Complete:" -percentcomplete 90
+winrm quickconfig -quiet
+
+
 <# -------------- Restart within 1 min -------------- #>
 
-Write-Progress -activity "Reboot server to ensure deployment" -status "90% Complete:" -percentcomplete 90
+Write-Progress -activity "Reboot server to ensure deployment" -status "95% Complete:" -percentcomplete 95
 <# 9. Restart to confirm Autologin #>
 # Restart Computer
 Start-Process -FilePath "Shutdown.exe" -ArgumentList "-r" -PassThru
+
+Write-Progress -activity "Reboot command has been sent. We completed this script." -status "100% Complete:" -percentcomplete 100
 EXIT 0
