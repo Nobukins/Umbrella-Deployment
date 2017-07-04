@@ -6,7 +6,7 @@
 		Package Umbrella 
         { 
             Ensure = "Present" 
-            Path = "https://dsmstore.directsmile.de/nightlybuilds/umbrella.msi"
+            Path = "https://directsmile.blob.core.windows.net/installer/umbrella.msi"
             Name = "Umbrella"
             ProductId="47F4B030-ACA6-47E5-8C51-E240D5BC4114"
             Arguments = '/log c:\dsc_Umbrella_Deployment.log ROOTURL="http://localhost"'                        
