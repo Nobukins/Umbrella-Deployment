@@ -21,3 +21,7 @@ Start-DscConfiguration -Wait -Force -Verbose -Path .\UmbrellaDeployment
 
 <#All of exe installation cannot be tracked whether it successfully installed or not, because it is .exe, not .msi. So don't worry#>
 <# If it throw error, try same command with -Force as additional parameter. It force to apply it again#>
+
+<# Set ExecutionPolicy #>
+# https://technet.microsoft.com/en-us/library/ee176961.aspx
+Set-ExecutionPolicy Unrestricted

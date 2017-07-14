@@ -144,11 +144,15 @@ Write-Host "Complete installation of .Net462"
 Write-Progress -activity "Configure WinRM" -status "90% Complete:" -percentcomplete 90
 winrm quickconfig -quiet
 
+<# 10. Set ExecutionPolicy #>
+Write-Progress -activity "Set ExecutionPolicy" -status "93% Complete:" -percentcomplete 93
+# https://technet.microsoft.com/en-us/library/ee176961.aspx
+Set-ExecutionPolicy Unrestricted
 
 <# -------------- Restart within 1 min -------------- #>
 
 Write-Progress -activity "Reboot server to ensure deployment" -status "95% Complete:" -percentcomplete 95
-<# 9. Restart to confirm Autologin #>
+<# 11. Restart to confirm Autologin #>
 # Restart Computer
 Start-Process -FilePath "Shutdown.exe" -ArgumentList "-r" -PassThru
 
