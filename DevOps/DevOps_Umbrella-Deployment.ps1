@@ -147,7 +147,7 @@ winrm quickconfig -quiet
 <# 10. Set ExecutionPolicy #>
 Write-Progress -activity "Set ExecutionPolicy" -status "93% Complete:" -percentcomplete 93
 # https://technet.microsoft.com/en-us/library/ee176961.aspx
-Set-ExecutionPolicy Unrestricted
+Set-ExecutionPolicy -Force Unrestricted
 
 <# -------------- Restart within 1 min -------------- #>
 

@@ -24,4 +24,4 @@ Start-DscConfiguration -Wait -Force -Verbose -Path .\UmbrellaDeployment
 
 <# Set ExecutionPolicy #>
 # https://technet.microsoft.com/en-us/library/ee176961.aspx
-Set-ExecutionPolicy Unrestricted
+Set-ExecutionPolicy -Force Unrestricted
